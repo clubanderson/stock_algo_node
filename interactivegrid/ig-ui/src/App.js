@@ -646,6 +646,7 @@ class App extends Component {
     // }
 
     componentDidMount() {
+        document.title = "Clubanderson Social Stock Analyzer"
         // this.toggleModalSecurity();
         this.createHighlightPolicy();
         // setTimeout(() => {
