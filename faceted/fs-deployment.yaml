@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fs-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fs-ui
+  template:
+    metadata:
+      labels:
+        app: fs-ui
+    spec:
+      containers:
+        - name: fs-ui
+#          image: iad.ocir.io/idjgmgwizrzb/fs-ui:latest
+          image: fs-ui:latest
+          workingDir: /usr/src
+#          imagePullPolicy: "Always"
+          imagePullPolicy: "Never"
+          ports:
+            - containerPort: 80
+              name: http
+#          env:
+#            - name: DATABASE
+#              valueFrom:
+#                secretKeyRef:
+#                  name: fs-ui-secrets
+#                  key: DATABASE
+          envFrom:
+            - secretRef:
+                name: fs-ui-secrets
+#            - configMapRef:
+#                name: fs-ui-config
+      imagePullSecrets:
+        - name: ocirsecret

@@ -1,0 +1,11 @@
+node_modules
+build
+.dockerignore
+Dockerfile
+Dockerfile.prod
+np-configmap.yaml
+np-deployment.yaml
+np-secrets.yaml
+np-service.yaml
+start.sh
+stop.sh

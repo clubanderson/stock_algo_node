@@ -1,0 +1,84 @@
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-alpine {
+  @include ag-theme-alpine((
+          odd-row-background-color: #F8F8F8,
+          //row-height: 12px,
+          //grid-size: 10px,
+          //row-height: 20px,
+          font-family: ("Helvetica Neue", sans-serif),
+          font-size: 12px,
+  ));
+  //.ag-row-hover {
+  //  /* putting in !important so it overrides the theme's styling as it hovers the row also */
+  //  background-color: #dfdfff !important;
+  //}
+  //
+  //.ag-column-hover {
+  //  background-color: #dfffdf;
+  //}
+  .rag-back-red {
+    background-color: red;
+  }
+  .rag-back-blue {
+    background-color: blue;
+  }
+  .rag-back-orange {
+    background-color: orange;
+  }
+  .rag-back-white {
+    background-color: white;
+  }
+  .rag-back-black {
+    background-color: black;
+  }
+  .rag-back-green {
+    background-color: green;
+  }
+  .rag-back-gray {
+    background-color: gray;
+  }
+  .rag-back-purple {
+    background-color: purple;
+  }
+  .rag-back-pink {
+    background-color: pink;
+  }
+  .rag-back-yellow {
+    background-color: yellow;
+  }
+
+  .rag-fore-red {
+    color: red;
+  }
+  .rag-fore-blue {
+    color: blue;
+  }
+  .rag-fore-orange {
+    color: orange;
+  }
+  .rag-fore-white {
+    color: white;
+  }
+  .rag-fore-black {
+    color: black;
+  }
+  .rag-fore-green {
+    color: green;
+  }
+  .rag-fore-gray {
+    color: gray;
+  }
+  .rag-fore-purple {
+    color: purple;
+  }
+  .rag-fore-pink {
+    color: pink;
+  }
+  .rag-fore-yellow {
+    color: yellow;
+  }
+}
+
+

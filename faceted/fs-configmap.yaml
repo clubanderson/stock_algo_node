@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fs-ui-config
+  labels:
+    app: fs-ui
+data:
+  DATABASE: mysql
+  DATABASE_HOST: mysql.default.svc.cluster.local
+  DATABASE_USER: root
+  DATABASE_PASSWORD: admin123
+  DATABASE_PORT: "3306"
+  UI_PORT: "8001"
+  SECRET: asdlplplfwfwefwekwself.2342.dawasq
+

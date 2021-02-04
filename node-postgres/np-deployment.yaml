@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: np-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: np-api
+  template:
+    metadata:
+      labels:
+        app: np-api
+    spec:
+      containers:
+        - name: np-api
+          image: np-api:latest
+#          image: iad.ocir.io/idjgmgwizrzb/np-api:latest
+          workingDir: /usr/src
+#          imagePullPolicy: "Always"
+          imagePullPolicy: "Never"
+          ports:
+            - containerPort: 3001
+              name: http
+#          env:
+#            - name: DATABASE
+#              valueFrom:
+#                secretKeyRef:
+#                  name: np-api-secrets
+#                  key: DATABASE
+          envFrom:
+            - secretRef:
+                name: np-api-secrets
+#            - configMapRe:
+#                name: np-api-config
+      imagePullSecrets:
+        - name: ocirsecret

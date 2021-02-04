@@ -1,0 +1,48 @@
+{
+  "name": "ig-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ag-grid-enterprise/all-modules": "^24.1.0",
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.2",
+    "@testing-library/user-event": "^12.2.2",
+    "ag-grid-community": "^24.1.0",
+    "ag-grid-enterprise": "^24.1.0",
+    "ag-grid-react": "^24.1.1",
+    "bootstrap": "^4.5.3",
+    "node-sass": "^4.14.1",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "reactstrap": "^8.7.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
