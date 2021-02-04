@@ -62,30 +62,63 @@ class App extends Component {
             cellSelectionText: "Cell Selection",
             dirtyRecords: [],
             dirtySave: false,
-            highlightRecords: [{column: "title", text: "Four Rooms", operator: "==", color: "red", backgroundcolor: "yellow"},{column: "title", text: "Star Wars", operator: "==", color: "blue", backgroundcolor: "yellow"},{column: "runtime", text: "140", operator: ">=", color: "pink", backgroundcolor: "yellow"}],
+            highlightRecords: [{column: "symbol", text: "AMC", operator: "==", color: "red", backgroundcolor: "yellow"},{column: "symbol", text: "NOK", operator: "==", color: "blue", backgroundcolor: "yellow"},{column: "runtime", text: "140", operator: ">=", color: "pink", backgroundcolor: "yellow"}],
             highlightPolicy: [],
-            highlightPolicy2: { 'rag-back-green rag-fore-white': 'data.title == "Four Rooms"', 'rag-fore-red rag-back-purple': 'data.title == "Star Wars"'},
+            highlightPolicy2: { 'rag-back-green rag-fore-white': 'data.symbol == "AMC"', 'rag-fore-red rag-back-purple': 'data.symbol == "NOK"'},
             columnDefs: [{
-                headerName: "ID", editable: false, filter: 'agNumberColumnFilter', width: 100, field: "id", sortable: true, checkboxSelection: function(params) {
+                headerName: "ID", editable: false, filter: 'agNumberColumnFilter', width: 60, field: "id", sortable: true, checkboxSelection: function(params) {
                     return true;
                 }, resizable: true, enablePivot: true, enableRowGroup: true,
             }, {
-                headerName: "Symbol", editable: true, field: "symbol", sortable: true, filter: true, resizable: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Symbol",        editable: false, width: 120, field: "symbol",       sortable: true, filter: true, resizable: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Name", editable: true, field: "name", sortable: true, filter: true, resizable: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Name",          editable: false, width: 260, field: "name",         sortable: true, filter: true, resizable: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Price", editable: true, width: 120, field: "price", sortable: true, filter: 'agNumberColumnFilter', resizable: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Price",         editable: false, width: 120, field: "price",        sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, resizable: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Change", editable: true, field: "change", sortable: true, filter: 'agNumberColumnFilter', resizable: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Change",        editable: false, width: 120, field: "change",       sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, valueFormatter: numFormatter, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "% Change", filter: 'agNumberColumnFilter', editable: true, width: 120, field: "pct_change", sortable: true, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
+                headerName: "% Change",      editable: false, width: 160, field: "pct_change",   sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, valueFormatter: pctFormatter, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Market Cap", editable: true, field: "market_cap", sortable: true, filter: 'agNumberColumnFilter', resizable: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Market Cap",    editable: false, width: 160, field: "market_cap",   sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, valueFormatter: currencyFormatter, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Avg 3 Mon Vol", editable: true, width: 140, field: "avg_3mon_vol", sortable: true, filter: 'agNumberColumnFilter', resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Avg 3 Mon Vol", editable: false, width: 160, field: "avg_3mon_vol", sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, valueFormatter: volumeFormatter, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
             }, {
-                headerName: "Volume", editable: true, width: 120, field: "volume", sortable: true, filter: 'agNumberColumnFilter', resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
+                headerName: "Volume",        editable: false, width: 160, field: "volume",       sortable: true, filter: 'agNumberColumnFilter', type: 'number', comparator: numCompare, valueFormatter: volumeFormatter, resizable: true, enableValue: true, enableRowGroup: true, enablePivot: true,
             }],
+        }
+        // valueFormatter: params => currencyFormatter(params.data.market_cap, '$'),
+        
+        function numCompare(a, b) {
+            if(parseFloat(a) > parseFloat(b)) return 1; else if( parseFloat(a) < parseFloat(b)) return -1; else return 0;
+            // if(a > b) return 1; else if(a < b) return -1; else return 0;
+        }
+
+        function numFormatter(params) {
+            return formatFloatNumber(params.value);
+        }
+        function pctFormatter(params) {
+            return formatFloatNumber(params.value);
+        }
+        function currencyFormatter(params) {
+            return Math.trunc(formatVol(params.value));
+        }
+        function volumeFormatter(params) {
+            return Math.trunc(formatVol(params.value));
+            // parseFloat(params.value).toFixed(3)
+            // return parseFloat(formatVol(params.value)).toFixed();
+        }
+        function formatVol(number){
+            if (number.slice(-1) == 'M') {
+                return parseFloat(number) * 1000000
+            } else if (number.slice(-1) == 'B') {
+                return parseFloat(number) * 1000000000
+            } else {
+                return parseFloat(number) * 1000000000000
+            }
+        }
+        function formatFloatNumber(number) {
+            return number.toString()
         }
     }
 
